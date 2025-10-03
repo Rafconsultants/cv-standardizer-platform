@@ -1,0 +1,1075 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 16,
+        "title": "Setup Project Architecture and Infrastructure",
+        "description": "Initialize the project repository with the required tech stack and configure the development environment for the CV Standardizer Platform.",
+        "details": "1. Create a new repository with proper .gitignore and README\n2. Set up React.js with TypeScript using Create React App or Vite (recommended for better performance)\n3. Configure Tailwind CSS v3.3+ with custom design system\n4. Set up Express.js (v4.18+) or Fastify (v4.0+) backend with TypeScript\n5. Configure PostgreSQL database connection using Prisma ORM (v4.0+) for type safety\n6. Set up Redis (v6.2+) for caching\n7. Configure ESLint and Prettier for code quality\n8. Set up GitHub Actions for CI/CD pipeline\n9. Configure Docker for containerization\n10. Set up development, staging, and production environments\n11. Implement basic folder structure following domain-driven design principles\n12. Configure environment variables and secrets management\n13. Set up logging with Winston or Pino\n14. Implement basic error handling middleware\n15. Document architecture decisions in ADR format",
+        "testStrategy": "1. Verify all services start correctly with docker-compose\n2. Run linting and type checking in CI pipeline\n3. Ensure hot reloading works in development environment\n4. Test database connection and migrations\n5. Verify environment isolation between development, staging, and production",
+        "priority": "high",
+        "dependencies": [],
+        "status": "in-progress",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Initialize Repository and Frontend Setup",
+            "description": "Create the project repository and set up the React.js frontend with TypeScript and Tailwind CSS",
+            "dependencies": [],
+            "details": "Create a new GitHub repository with appropriate .gitignore and README.md files. Initialize the frontend using Vite with React.js and TypeScript for better performance. Configure Tailwind CSS v3.3+ with a custom design system that aligns with the CV Standardizer Platform's branding. Set up ESLint and Prettier for code quality enforcement.\n<info added on 2025-10-02T14:12:19.910Z>\nSuccessfully completed frontend setup with the following components:\n\n- Created React + TypeScript + Vite project structure\n- Configured Tailwind CSS with custom design system\n- Set up ESLint and TypeScript configuration\n- Created basic component structure including Header, HomePage, LoginPage, RegisterPage, and DashboardPage with role-based content\n- Implemented routing with React Router\n- Added form handling with React Hook Form\n- Created responsive design with Tailwind CSS\n- Verified successful build with npm run build\n\nThe frontend implementation provides a solid foundation with modern React 18, TypeScript, Tailwind CSS for styling, React Router for navigation, form validation, responsive design, and component-based architecture. All components are ready for integration with the backend services.\n</info added on 2025-10-02T14:12:19.910Z>",
+            "status": "done",
+            "testStrategy": "Verify the frontend builds successfully without errors. Ensure hot reloading works in development environment. Run linting checks to confirm code quality tools are functioning properly."
+          },
+          {
+            "id": 2,
+            "title": "Backend and Database Configuration",
+            "description": "Set up Express.js backend with TypeScript and configure PostgreSQL with Prisma ORM",
+            "dependencies": [
+              "16.1"
+            ],
+            "details": "Implement Express.js (v4.18+) backend with TypeScript. Configure PostgreSQL database connection using Prisma ORM (v4.0+) for type safety. Set up Redis (v6.2+) for caching mechanisms. Implement basic folder structure following domain-driven design principles. Create initial database schema and migrations.\n<info added on 2025-10-02T14:15:44.014Z>\nSuccessfully completed backend and database configuration with Express.js and TypeScript. Implemented comprehensive Prisma schema with user management roles (CANDIDATE, RECRUITER, ADMIN), complete CV data structure (PersonalDetails, Education, Experience, Skills, Certifications, Languages), search functionality with saved searches, and audit logging system. Added authentication middleware with JWT, structured routes for auth, users, CV, and search endpoints, and implemented error handling with Winston logger. Security measures include helmet, CORS, and rate limiting middleware. Added form validation with express-validator and created environment configuration template. The backend architecture follows RESTful API principles with role-based access control, comprehensive database schema, security best practices, error handling, logging, and TypeScript for type safety. Backend builds successfully with TypeScript compilation.\n</info added on 2025-10-02T14:15:44.014Z>",
+            "status": "done",
+            "testStrategy": "Test database connection and migrations. Verify API endpoints respond correctly. Ensure Redis caching is functioning as expected. Run TypeScript type checking to confirm type safety."
+          },
+          {
+            "id": 3,
+            "title": "DevOps and Environment Configuration",
+            "description": "Configure Docker, CI/CD pipeline, and environment management",
+            "dependencies": [
+              "16.1",
+              "16.2"
+            ],
+            "details": "Set up Docker and docker-compose for containerization of all services. Configure GitHub Actions for CI/CD pipeline to automate testing and deployment. Establish development, staging, and production environments with appropriate configuration. Implement environment variables and secrets management using .env files and a secure vault solution.",
+            "status": "pending",
+            "testStrategy": "Verify all services start correctly with docker-compose. Ensure CI/CD pipeline runs successfully on pull requests. Test environment isolation between development, staging, and production. Validate secrets are properly managed and not exposed."
+          },
+          {
+            "id": 4,
+            "title": "Logging and Error Handling Implementation",
+            "description": "Set up comprehensive logging system and error handling middleware",
+            "dependencies": [
+              "16.2"
+            ],
+            "details": "Implement logging with Winston or Pino for both frontend and backend. Create structured logging format with appropriate log levels. Develop error handling middleware for the API with proper error codes and messages. Implement client-side error boundary components in React. Set up monitoring for production errors.",
+            "status": "pending",
+            "testStrategy": "Verify logs are properly generated and formatted. Test error handling by triggering various error conditions. Ensure error boundaries catch and display errors appropriately in the UI. Confirm monitoring alerts work as expected."
+          },
+          {
+            "id": 5,
+            "title": "Architecture Documentation and Testing Framework",
+            "description": "Document architecture decisions and set up testing infrastructure",
+            "dependencies": [
+              "16.1",
+              "16.2",
+              "16.3",
+              "16.4"
+            ],
+            "details": "Document architecture decisions in Architecture Decision Record (ADR) format. Create comprehensive README with setup instructions. Implement testing framework with Jest for unit tests and Cypress for E2E tests. Set up test database fixtures and mocking strategies. Create initial test suites for critical components.",
+            "status": "pending",
+            "testStrategy": "Review documentation for clarity and completeness. Run the test suite to ensure all tests pass. Verify test coverage meets minimum requirements. Ensure documentation accurately reflects the implemented architecture."
+          }
+        ]
+      },
+      {
+        "id": 17,
+        "title": "Design and Implement Authentication System",
+        "description": "Create a secure authentication system with JWT tokens, refresh token mechanism, and role-based access control for candidates and recruiters.",
+        "details": "1. Implement user registration with email verification\n2. Create login system with JWT (jsonwebtoken v9.0+)\n3. Implement refresh token mechanism with secure HTTP-only cookies\n4. Set up password hashing with bcrypt (v5.0+)\n5. Create role-based access control (RBAC) system with candidate and recruiter roles\n6. Implement password reset functionality\n7. Set up OAuth integration for social login (Google, LinkedIn)\n8. Create middleware for route protection\n9. Implement rate limiting with express-rate-limit\n10. Set up CSRF protection\n11. Configure secure headers with helmet.js\n12. Implement account lockout after failed attempts\n13. Create user session management\n14. Set up audit logging for authentication events\n15. Implement two-factor authentication (optional for MVP)",
+        "testStrategy": "1. Unit tests for authentication logic\n2. Integration tests for registration and login flows\n3. Security testing for token validation\n4. Test password reset flow\n5. Verify role-based access restrictions\n6. Test rate limiting and security headers\n7. Perform penetration testing on authentication endpoints",
+        "priority": "high",
+        "dependencies": [
+          16
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement User Registration and Authentication",
+            "description": "Create user registration with email verification and login system with JWT tokens",
+            "dependencies": [],
+            "details": "Develop user registration endpoints with email verification flow. Implement login system using JWT (jsonwebtoken v9.0+) for authentication. Set up password hashing with bcrypt (v5.0+) for secure storage. Create database models for user authentication data that will integrate with the database schema in Task 18.",
+            "status": "pending",
+            "testStrategy": "Write unit tests for registration and login logic. Create integration tests to verify the complete registration and login flows. Test email verification process with mock email service. Verify password hashing security and JWT token generation."
+          },
+          {
+            "id": 2,
+            "title": "Implement Token Management and Security",
+            "description": "Create refresh token mechanism and implement security measures for the authentication system",
+            "dependencies": [
+              "17.1"
+            ],
+            "details": "Implement refresh token mechanism using secure HTTP-only cookies. Set up CSRF protection for form submissions. Configure secure headers with helmet.js to prevent common web vulnerabilities. Implement rate limiting with express-rate-limit to prevent brute force attacks. Create account lockout functionality after multiple failed login attempts.",
+            "status": "pending",
+            "testStrategy": "Test refresh token flow for proper token rotation. Verify CSRF protection prevents cross-site request forgery. Test rate limiting functionality under load. Verify account lockout triggers appropriately and can be reset."
+          },
+          {
+            "id": 3,
+            "title": "Develop Role-Based Access Control",
+            "description": "Create a role-based access control system for candidates and recruiters with appropriate middleware",
+            "dependencies": [
+              "17.1",
+              "17.2"
+            ],
+            "details": "Implement role-based access control (RBAC) system with distinct candidate and recruiter roles. Create middleware for route protection based on user roles and authentication status. Design permission structures that align with the different user types. Implement user session management to track active sessions.",
+            "status": "pending",
+            "testStrategy": "Test role-based access restrictions to ensure proper separation of candidate and recruiter functionalities. Verify middleware correctly blocks unauthorized access to protected routes. Test session management for proper timeout and invalidation."
+          },
+          {
+            "id": 4,
+            "title": "Implement Password Management Features",
+            "description": "Create password reset functionality and account recovery options",
+            "dependencies": [
+              "17.1"
+            ],
+            "details": "Develop secure password reset functionality with time-limited tokens. Implement email notification system for password reset requests. Create password strength validation to ensure secure passwords. Set up audit logging for password-related events and authentication activities.",
+            "status": "pending",
+            "testStrategy": "Test complete password reset flow including token generation, email delivery, and password update. Verify token expiration works correctly. Test password strength validation against weak passwords. Verify audit logs capture relevant security events."
+          },
+          {
+            "id": 5,
+            "title": "Implement OAuth and Two-Factor Authentication",
+            "description": "Set up social login options and optional two-factor authentication for enhanced security",
+            "dependencies": [
+              "17.1",
+              "17.2",
+              "17.3"
+            ],
+            "details": "Integrate OAuth for social login options including Google and LinkedIn. Implement proper profile merging for users who sign up with multiple methods. Develop two-factor authentication (2FA) as an optional security feature for users. Create unified authentication flow that works across all authentication methods.",
+            "status": "pending",
+            "testStrategy": "Test OAuth integration with mock social providers. Verify proper account linking between social and email accounts. Test 2FA enrollment and verification process. Ensure all authentication methods properly generate the required JWT tokens and session data."
+          }
+        ]
+      },
+      {
+        "id": 18,
+        "title": "Design and Implement Database Schema",
+        "description": "Create a comprehensive database schema to support the standardized CV format, user profiles, and search functionality.",
+        "details": "1. Design user table with authentication information\n2. Create profile tables for candidates and recruiters\n3. Design CV schema with sections for personal details, education, work experience, skills, certifications, and availability\n4. Implement relations between tables with proper foreign keys\n5. Set up indexes for optimized search queries\n6. Create migration scripts using Prisma migrations\n7. Implement data validation at database level\n8. Design schema for saved searches and preferences\n9. Set up audit logging tables\n10. Implement soft delete functionality\n11. Create database views for common queries\n12. Configure database backups and recovery procedures\n13. Implement database versioning strategy\n14. Set up database security policies\n15. Document database schema with entity relationship diagrams",
+        "testStrategy": "1. Validate schema against requirements\n2. Test migrations up and down\n3. Verify foreign key constraints\n4. Test data integrity with sample data\n5. Benchmark query performance with realistic data volumes\n6. Verify indexing effectiveness\n7. Test backup and restore procedures",
+        "priority": "high",
+        "dependencies": [
+          16
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design Core User and Authentication Tables",
+            "description": "Create database tables for user authentication, profiles for candidates and recruiters, and implement proper relations.",
+            "dependencies": [],
+            "details": "Design user table with authentication fields (email, password hash, role). Create separate profile tables for candidates and recruiters with appropriate fields. Implement relations between tables with proper foreign keys. Set up indexes for frequently queried fields. Implement data validation constraints at the database level.",
+            "status": "pending",
+            "testStrategy": "Validate schema against authentication requirements. Test foreign key constraints between user and profile tables. Verify data integrity with sample user registrations. Test query performance for user lookups."
+          },
+          {
+            "id": 2,
+            "title": "Implement CV Data Structure Schema",
+            "description": "Design and implement the database schema for storing standardized CV data with all required sections.",
+            "dependencies": [
+              "18.1"
+            ],
+            "details": "Create tables for CV core data and related sections (personal details, education, work experience, skills, certifications, languages, projects). Design schema to support versioning of CVs. Implement proper relations to user profiles. Set up appropriate constraints and validation rules. Create indexes for optimized CV retrieval.",
+            "status": "pending",
+            "testStrategy": "Test CV data storage with various sample CVs. Verify all CV sections can be properly stored and retrieved. Test relationships between CV and user tables. Benchmark query performance for CV retrieval operations."
+          },
+          {
+            "id": 3,
+            "title": "Develop Search and Preferences Schema",
+            "description": "Design database structures for search functionality, saved searches, and user preferences.",
+            "dependencies": [
+              "18.1",
+              "18.2"
+            ],
+            "details": "Create tables for saved searches with search parameters. Design schema for user preferences and settings. Implement tables for search history tracking. Set up indexes for efficient search operations. Create structures to support faceted search and filtering capabilities.",
+            "status": "pending",
+            "testStrategy": "Test saved search functionality with various search criteria. Verify preference storage and retrieval. Test search history tracking. Benchmark performance of search-related queries with realistic data volumes."
+          },
+          {
+            "id": 4,
+            "title": "Implement Database Migration and Versioning",
+            "description": "Set up Prisma migration system and implement database versioning strategy.",
+            "dependencies": [
+              "18.1",
+              "18.2",
+              "18.3"
+            ],
+            "details": "Configure Prisma ORM and create initial schema definition. Implement migration scripts using Prisma migrations. Set up database versioning strategy. Create scripts for both upgrade and rollback scenarios. Implement seed data for development and testing environments. Document migration procedures.",
+            "status": "pending",
+            "testStrategy": "Test migrations up and down to verify schema changes. Verify data integrity after migrations. Test seeding process. Validate migration scripts in different environments (development, staging, production)."
+          },
+          {
+            "id": 5,
+            "title": "Implement Security, Logging and Maintenance Features",
+            "description": "Set up database security policies, audit logging, and maintenance procedures.",
+            "dependencies": [
+              "18.1",
+              "18.2",
+              "18.3",
+              "18.4"
+            ],
+            "details": "Implement soft delete functionality across relevant tables. Set up audit logging tables to track data changes. Create database views for common queries. Configure database security policies and access controls. Set up database backup and recovery procedures. Create comprehensive documentation including entity relationship diagrams.",
+            "status": "pending",
+            "testStrategy": "Test soft delete functionality. Verify audit logging captures all relevant changes. Test database views with various queries. Validate security policies prevent unauthorized access. Test backup and restore procedures to ensure data integrity."
+          }
+        ]
+      },
+      {
+        "id": 19,
+        "title": "Develop Standardized CV Component Library",
+        "description": "Create a reusable component library for the standardized CV sections following the design requirements and ensuring accessibility compliance.",
+        "details": "1. Design and implement components for each CV section (Personal Details, Education, Work Experience, Skills, Certifications, Availability)\n2. Create responsive layouts using Tailwind CSS with mobile-first approach\n3. Implement form components with React Hook Form (v7.0+)\n4. Add validation rules for required fields using Zod (v3.0+) or Yup\n5. Ensure WCAG 2.1 AA compliance for all components\n6. Implement dark mode support\n7. Create storybook documentation for component library\n8. Implement internationalization support using i18next\n9. Create print-friendly styling\n10. Implement PDF export functionality using react-pdf (v6.0+)\n11. Ensure keyboard navigation for all components\n12. Add proper ARIA attributes for screen readers\n13. Implement focus management for form fields\n14. Create loading and error states for all components\n15. Test components across different browsers and devices",
+        "testStrategy": "1. Unit tests for all components using React Testing Library\n2. Visual regression testing with Storybook\n3. Accessibility testing with axe-core\n4. Cross-browser testing\n5. Mobile responsiveness testing\n6. Internationalization testing\n7. PDF export testing with different content types",
+        "priority": "high",
+        "dependencies": [
+          16
+        ],
+        "status": "in-progress",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Develop Core CV Section Components",
+            "description": "Design and implement the foundational components for each CV section following the standardized format.",
+            "dependencies": [],
+            "details": "1. Create components for Personal Details section with proper form fields\n2. Implement Education section with add/edit/delete functionality\n3. Build Work Experience section with timeline visualization\n4. Develop Skills section with rating and categorization options\n5. Create Certifications and Availability components\n6. Ensure responsive layouts using Tailwind CSS with mobile-first approach\n7. Add proper component props and TypeScript interfaces\n<info added on 2025-10-02T14:29:23.600Z>\nSuccessfully completed all core CV section components with the following implementations:\n\n- Created comprehensive TypeScript interfaces for CV data structure\n- Implemented PersonalDetailsSection with all required fields including contact information, social media links, and availability status\n- Built EducationSection with dynamic add/edit/delete functionality for institutions, degrees, dates, and descriptions\n- Developed ExperienceSection with professional work history tracking including company details, positions, dates, and responsibilities\n- Created SkillsSection with categorization (Technical, Soft Skills, Languages, Tools) and proficiency level indicators\n- Implemented CertificationsSection for professional credentials with verification details\n- Built LanguagesSection with visual proficiency tracking using color-coded indicators\n- Created CVPreview component with professional layout, responsive design, and print-friendly styling\n- Integrated CVBuilderPage with section navigation, form state management, and preview toggle\n- Added routing and navigation integration\n- Implemented responsive Tailwind CSS design throughout all components\n- Completed TypeScript implementation with zero compilation errors\n</info added on 2025-10-02T14:29:23.600Z>",
+            "status": "in-progress",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Form Validation System",
+            "description": "Create a robust form validation system for all CV components using React Hook Form and schema validation.",
+            "dependencies": [
+              "19.1"
+            ],
+            "details": "1. Set up React Hook Form (v7.0+) integration for all form components\n2. Implement validation schema using Zod (v3.0+) or Yup\n3. Create validation rules for required fields and data formats\n4. Add error message display components with proper styling\n5. Implement field-level validation with real-time feedback\n6. Create form submission handlers with validation state management\n7. Test validation across all CV section components",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Ensure Accessibility Compliance",
+            "description": "Implement accessibility features across all components to meet WCAG 2.1 AA standards.",
+            "dependencies": [
+              "19.1",
+              "19.2"
+            ],
+            "details": "1. Add proper ARIA attributes for all interactive elements\n2. Implement keyboard navigation for all components\n3. Ensure proper focus management for form fields\n4. Create skip links for navigation\n5. Implement proper color contrast ratios for all text elements\n6. Add screen reader announcements for dynamic content\n7. Test with assistive technologies\n8. Implement dark mode support with accessible color schemes",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Add Internationalization Support",
+            "description": "Implement internationalization capabilities for all CV components to support multiple languages.",
+            "dependencies": [
+              "19.1",
+              "19.3"
+            ],
+            "details": "1. Set up i18next integration for the component library\n2. Create translation files for key languages (English, Spanish, French, German)\n3. Implement language switching functionality\n4. Add RTL support for appropriate languages\n5. Ensure date and number formatting based on locale\n6. Test components with various language configurations\n7. Create documentation for adding new languages",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Implement Export and Documentation",
+            "description": "Create export functionality and comprehensive documentation for the component library.",
+            "dependencies": [
+              "19.1",
+              "19.2",
+              "19.3",
+              "19.4"
+            ],
+            "details": "1. Implement PDF export functionality using react-pdf (v6.0+)\n2. Create print-friendly styling for all components\n3. Set up Storybook documentation for the component library\n4. Document component props, usage examples, and accessibility features\n5. Create visual regression tests for all components\n6. Implement cross-browser testing\n7. Add performance optimization documentation\n8. Create usage guidelines for developers",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 20,
+        "title": "Implement Candidate Onboarding Wizard",
+        "description": "Create a step-by-step wizard interface for candidates to manually input their CV information with progress saving and validation.",
+        "details": "1. Design multi-step form flow with progress indicators\n2. Implement form state management using React Hook Form and Zustand\n3. Create client-side validation with immediate feedback\n4. Implement server-side validation as fallback\n5. Add auto-save functionality using local storage\n6. Create draft saving to database\n7. Implement progress tracking across steps\n8. Add form navigation with validation gates\n9. Create responsive design for mobile devices\n10. Implement clear error messaging and guidance\n11. Add tooltips and help text for form fields\n12. Create confirmation step with preview\n13. Implement form analytics to identify drop-off points\n14. Add keyboard shortcuts for navigation\n15. Ensure proper tab order and focus management",
+        "testStrategy": "1. User flow testing with realistic scenarios\n2. Validation testing with edge cases\n3. Auto-save recovery testing\n4. Mobile usability testing\n5. Accessibility testing for form navigation\n6. Performance testing with large forms\n7. Integration testing with backend APIs",
+        "priority": "high",
+        "dependencies": [
+          17,
+          18,
+          19
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design and implement multi-step form UI with progress indicators",
+            "description": "Create the visual components and layout for the wizard interface with clear progress tracking",
+            "dependencies": [],
+            "details": "Design responsive form components using React and styled-components. Implement progress bar/stepper showing completed and current steps. Create navigation controls (prev/next buttons) with appropriate validation gates. Ensure mobile-friendly layout with proper spacing and touch targets.",
+            "status": "pending",
+            "testStrategy": "Test responsive behavior across device sizes. Verify progress indicator accuracy. Validate navigation flow with both valid and invalid form states."
+          },
+          {
+            "id": 2,
+            "title": "Implement form state management and validation",
+            "description": "Set up React Hook Form with Zustand for state management and implement comprehensive validation",
+            "dependencies": [
+              "20.1"
+            ],
+            "details": "Configure React Hook Form for each wizard step. Implement Zustand store for cross-step state persistence. Create validation schemas using Yup or Zod. Implement real-time client-side validation with immediate feedback. Add server-side validation as fallback. Create clear error messaging with guidance for correction.",
+            "status": "pending",
+            "testStrategy": "Test validation rules with valid and edge case inputs. Verify error message clarity. Test form submission with both valid and invalid data."
+          },
+          {
+            "id": 3,
+            "title": "Develop auto-save and draft functionality",
+            "description": "Implement automatic saving of form progress to both local storage and database",
+            "dependencies": [
+              "20.2"
+            ],
+            "details": "Create auto-save mechanism triggered on field changes and step transitions. Implement local storage backup using browser localStorage API. Develop API endpoints for saving draft data to database. Add draft recovery functionality on page reload or return visit. Implement draft versioning to prevent data loss.",
+            "status": "pending",
+            "testStrategy": "Test auto-save triggers and timing. Verify data persistence across page reloads. Test recovery from browser crashes. Validate draft versioning with concurrent edits."
+          },
+          {
+            "id": 4,
+            "title": "Create CV preview and confirmation step",
+            "description": "Implement a final step showing a complete preview of the CV with confirmation options",
+            "dependencies": [
+              "20.2",
+              "20.3"
+            ],
+            "details": "Design and implement CV preview layout matching final output format. Create section-by-section preview with edit shortcuts to relevant steps. Implement print and download options (PDF, Word). Add final submission confirmation with appropriate messaging. Implement success/completion state and next steps guidance.",
+            "status": "pending",
+            "testStrategy": "Test preview accuracy against entered data. Verify PDF/Word export functionality. Test edit shortcuts navigation. Validate submission process and success state."
+          },
+          {
+            "id": 5,
+            "title": "Implement accessibility and user experience enhancements",
+            "description": "Ensure the wizard is fully accessible and provides optimal user experience",
+            "dependencies": [
+              "20.1",
+              "20.2",
+              "20.4"
+            ],
+            "details": "Implement proper keyboard navigation and focus management. Add ARIA attributes for screen reader compatibility. Create tooltips and contextual help for form fields. Implement keyboard shortcuts for common actions. Add form analytics to identify drop-off points and usability issues. Ensure proper tab order across all steps.",
+            "status": "pending",
+            "testStrategy": "Conduct accessibility testing with screen readers. Test keyboard-only navigation. Verify focus management during step transitions. Test with actual users to identify usability issues."
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "title": "Develop AI-Powered CV Parsing System",
+        "description": "Implement an AI-powered system to parse existing CVs in various formats and convert them to the standardized format.",
+        "details": "1. Integrate with OpenAI API (GPT-4 or latest available model) for document parsing\n2. Implement file upload functionality with drag-and-drop using react-dropzone\n3. Add support for PDF, DOC, and DOCX formats using pdf.js and mammoth.js\n4. Create preprocessing pipeline for document normalization\n5. Implement text extraction and structure recognition\n6. Design prompt engineering for optimal AI parsing results\n7. Create mapping logic from parsed data to standardized format\n8. Implement confidence scoring for parsed fields\n9. Add manual review interface for low-confidence fields\n10. Create feedback loop for improving parsing accuracy\n11. Implement rate limiting and queue system for parsing requests\n12. Add error handling for failed parsing attempts\n13. Create fallback to manual input for unparsable documents\n14. Implement caching for parsed results\n15. Add analytics for parsing success rates",
+        "testStrategy": "1. Test parsing accuracy with diverse CV formats\n2. Benchmark parsing performance and speed\n3. Test file upload with various file sizes and formats\n4. Verify mapping accuracy to standardized format\n5. Test error handling and recovery\n6. Validate confidence scoring against human review\n7. Test system under high load conditions",
+        "priority": "high",
+        "dependencies": [
+          18,
+          19,
+          20
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement Document Upload and Format Support",
+            "description": "Create a file upload system with drag-and-drop functionality that supports PDF, DOC, and DOCX formats.",
+            "dependencies": [],
+            "details": "Implement file upload functionality using react-dropzone. Add support for PDF files using pdf.js and DOC/DOCX files using mammoth.js. Create a unified interface for handling different file formats. Implement file validation and error handling for unsupported formats. Add progress indicators for file uploads.",
+            "status": "pending",
+            "testStrategy": "Test uploading various file formats and sizes. Verify error handling for unsupported formats. Test drag-and-drop functionality across browsers. Validate upload progress indicators."
+          },
+          {
+            "id": 2,
+            "title": "Develop Text Extraction and Preprocessing Pipeline",
+            "description": "Create a preprocessing pipeline for document normalization and text extraction from uploaded CV documents.",
+            "dependencies": [
+              "21.1"
+            ],
+            "details": "Implement text extraction from PDF, DOC, and DOCX formats. Create preprocessing steps for document normalization including text cleaning, header/footer removal, and section identification. Develop structure recognition to identify CV sections like education, experience, and skills. Implement error handling for extraction failures.",
+            "status": "pending",
+            "testStrategy": "Test extraction accuracy with diverse CV formats and layouts. Verify structure recognition with various CV templates. Test preprocessing with documents containing special characters and formatting."
+          },
+          {
+            "id": 3,
+            "title": "Integrate OpenAI API for CV Parsing",
+            "description": "Integrate with OpenAI API (GPT-4) and implement prompt engineering for optimal CV parsing results.",
+            "dependencies": [
+              "21.2"
+            ],
+            "details": "Set up OpenAI API integration with authentication and error handling. Design effective prompts for CV parsing with clear instructions. Implement rate limiting and queue system for parsing requests. Create fallback mechanisms for API failures. Optimize token usage for cost efficiency.",
+            "status": "pending",
+            "testStrategy": "Test parsing accuracy with diverse CV samples. Benchmark API response times and reliability. Verify rate limiting functionality. Test fallback mechanisms during API outages."
+          },
+          {
+            "id": 4,
+            "title": "Develop Mapping Logic and Confidence Scoring",
+            "description": "Create mapping logic from parsed data to standardized format and implement confidence scoring for parsed fields.",
+            "dependencies": [
+              "21.3"
+            ],
+            "details": "Develop mapping logic to transform parsed CV data into the standardized format. Implement confidence scoring algorithm for each parsed field. Create validation rules for parsed data. Implement caching for parsed results to improve performance. Design data structures for storing parsed and mapped data.",
+            "status": "pending",
+            "testStrategy": "Validate mapping accuracy with various CV formats. Test confidence scoring against human review. Verify caching functionality and performance. Test edge cases with unusual CV structures."
+          },
+          {
+            "id": 5,
+            "title": "Create Manual Review Interface and Feedback Loop",
+            "description": "Implement a manual review interface for low-confidence fields and create a feedback loop for improving parsing accuracy.",
+            "dependencies": [
+              "21.4"
+            ],
+            "details": "Design and implement a user interface for manual review of low-confidence parsed fields. Create a feedback collection mechanism to improve parsing accuracy. Implement fallback to manual input for unparsable documents. Add analytics for tracking parsing success rates and common failures. Create a system to incorporate feedback into future parsing attempts.",
+            "status": "pending",
+            "testStrategy": "Conduct usability testing of the manual review interface. Verify that feedback is properly collected and stored. Test the complete parsing workflow from upload to final result. Validate analytics reporting accuracy."
+          }
+        ]
+      },
+      {
+        "id": 22,
+        "title": "Implement Elasticsearch Integration for CV Search",
+        "description": "Set up and configure Elasticsearch for powerful and efficient CV searching and filtering capabilities.",
+        "details": "1. Set up Elasticsearch (v8.0+) cluster with appropriate sharding\n2. Design index mapping for CV data with proper analyzers\n3. Implement indexing pipeline from PostgreSQL to Elasticsearch using change data capture\n4. Create custom analyzers for different languages\n5. Implement tokenizers for skills and technical terms\n6. Set up synonym dictionaries for technical skills\n7. Configure relevance scoring with appropriate boosting\n8. Implement geo-location search for location-based filtering\n9. Create faceted search capabilities\n10. Set up autocomplete functionality using completion suggester\n11. Implement fuzzy matching for typo tolerance\n12. Create reindexing strategy for schema updates\n13. Implement search result highlighting\n14. Set up monitoring and alerting for Elasticsearch cluster\n15. Document query patterns and optimization strategies",
+        "testStrategy": "1. Benchmark search performance with realistic data volumes\n2. Test search accuracy with various query patterns\n3. Verify faceted search and filtering\n4. Test autocomplete functionality\n5. Validate geo-location search accuracy\n6. Test fuzzy matching with common typos\n7. Verify reindexing process",
+        "priority": "high",
+        "dependencies": [
+          18
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up Elasticsearch Infrastructure",
+            "description": "Configure Elasticsearch v8.0+ cluster with appropriate sharding and monitoring for CV search capabilities",
+            "dependencies": [],
+            "details": "Install and configure Elasticsearch v8.0+ with proper cluster settings, node configuration, and sharding strategy based on expected data volume. Set up monitoring and alerting for cluster health. Implement security features including authentication and encryption. Document deployment architecture and configuration settings.",
+            "status": "pending",
+            "testStrategy": "Verify cluster stability under load with benchmark tests. Test failover scenarios. Confirm monitoring alerts function correctly. Validate security configuration with penetration testing."
+          },
+          {
+            "id": 2,
+            "title": "Design CV Data Schema and Indexing Pipeline",
+            "description": "Create index mapping for CV data and implement data synchronization from PostgreSQL",
+            "dependencies": [
+              "22.1"
+            ],
+            "details": "Design index mapping optimized for CV data with appropriate field types and analyzers. Implement change data capture mechanism to synchronize data from PostgreSQL to Elasticsearch. Create reindexing strategy for schema updates. Document index structure and mapping decisions.",
+            "status": "pending",
+            "testStrategy": "Test indexing performance with realistic data volumes. Verify data consistency between PostgreSQL and Elasticsearch. Validate reindexing process works without service disruption."
+          },
+          {
+            "id": 3,
+            "title": "Implement Advanced Text Analysis Features",
+            "description": "Create custom analyzers, tokenizers, and synonym dictionaries for CV search optimization",
+            "dependencies": [
+              "22.2"
+            ],
+            "details": "Develop custom analyzers for multiple languages to handle CV content effectively. Implement specialized tokenizers for technical skills and industry terminology. Create and maintain synonym dictionaries for technical terms and job titles. Configure stemming and stop words appropriate for recruitment context.",
+            "status": "pending",
+            "testStrategy": "Test search accuracy across multiple languages. Verify synonym matching works correctly. Validate tokenization of technical terms and skills with various examples."
+          },
+          {
+            "id": 4,
+            "title": "Develop Search API and Query Optimization",
+            "description": "Create RESTful search API with relevance scoring, faceted search, and geo-location capabilities",
+            "dependencies": [
+              "22.3"
+            ],
+            "details": "Implement RESTful API endpoints for CV search with query DSL templates. Configure relevance scoring with appropriate field boosting. Implement faceted search for filtering by skills, experience, location, etc. Add geo-location search capabilities for proximity-based queries. Create search result highlighting for matched terms.",
+            "status": "pending",
+            "testStrategy": "Benchmark search response times under various query loads. Test search relevance with diverse query patterns. Verify faceted search and filtering accuracy. Validate geo-location search precision with different radius parameters."
+          },
+          {
+            "id": 5,
+            "title": "Implement User Experience Enhancements",
+            "description": "Add autocomplete, fuzzy matching, and search optimization documentation",
+            "dependencies": [
+              "22.4"
+            ],
+            "details": "Implement autocomplete functionality using Elasticsearch completion suggester. Add fuzzy matching capabilities for typo tolerance in search queries. Create comprehensive documentation for query patterns and optimization strategies. Implement client-side integration examples for frontend developers.",
+            "status": "pending",
+            "testStrategy": "Test autocomplete performance and accuracy. Verify fuzzy matching with common typos and misspellings. Validate documentation completeness with peer review. Test integration examples in different frontend frameworks."
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "title": "Develop Advanced Search and Filter Interface",
+        "description": "Create a powerful and intuitive search interface for recruiters with advanced filtering, sorting, and result management.",
+        "details": "1. Design search interface with filters for location, experience, skills, certifications, and availability\n2. Implement real-time search with debouncing using react-query (v4.0+)\n3. Create autocomplete for search terms\n4. Implement advanced boolean search operators\n5. Add saved searches functionality\n6. Create search history tracking\n7. Implement search result pagination with infinite scrolling option\n8. Add sorting options for search results\n9. Create visual filter indicators with easy removal\n10. Implement search analytics for popular terms\n11. Add export functionality for search results\n12. Create mobile-responsive search interface\n13. Implement keyboard shortcuts for power users\n14. Add search result visualization options (list/grid views)\n15. Create detailed and summary views for search results",
+        "testStrategy": "1. User testing with realistic search scenarios\n2. Performance testing with large result sets\n3. Test filter combinations and edge cases\n4. Verify saved searches functionality\n5. Test mobile usability of search interface\n6. Validate keyboard navigation\n7. Test export functionality with various result sizes",
+        "priority": "high",
+        "dependencies": [
+          19,
+          22
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design and Implement Core Search Interface",
+            "description": "Create the foundational search interface with essential filters and real-time search capabilities",
+            "dependencies": [],
+            "details": "Design and implement the main search interface with filters for location, experience, skills, certifications, and availability. Implement real-time search with debouncing using react-query (v4.0+). Ensure the interface is responsive and follows the design system established in Task 19. Include basic input validation and error handling for search queries.",
+            "status": "pending",
+            "testStrategy": "Conduct usability testing with recruiter personas. Test search performance with various query complexities. Verify filter functionality across different combinations. Test responsiveness across desktop and mobile viewports."
+          },
+          {
+            "id": 2,
+            "title": "Implement Advanced Search Features",
+            "description": "Add advanced search capabilities including autocomplete, boolean operators, and search history",
+            "dependencies": [
+              "23.1"
+            ],
+            "details": "Create autocomplete functionality for search terms using a trie data structure or appropriate library. Implement advanced boolean search operators (AND, OR, NOT, parentheses) with proper parsing and execution. Add search history tracking with timestamps and query parameters. Ensure all advanced features have appropriate keyboard shortcuts for power users.",
+            "status": "pending",
+            "testStrategy": "Test autocomplete with various input patterns and speeds. Verify boolean search operators with complex queries. Test search history persistence across sessions. Validate keyboard shortcuts across different browsers and operating systems."
+          },
+          {
+            "id": 3,
+            "title": "Develop Result Management and Visualization",
+            "description": "Create pagination, sorting, and visualization options for search results",
+            "dependencies": [
+              "23.1"
+            ],
+            "details": "Implement search result pagination with both traditional pagination and infinite scrolling options. Add sorting capabilities for search results based on relevance, date, experience level, and other key attributes. Create multiple visualization options including list view, grid view, detailed view, and summary view. Ensure all views maintain performance with large result sets.",
+            "status": "pending",
+            "testStrategy": "Test pagination with various page sizes and result counts. Verify sorting functionality across different data types. Test view switching with different result densities. Conduct performance testing with large datasets (1000+ results)."
+          },
+          {
+            "id": 4,
+            "title": "Create Filter Management System",
+            "description": "Implement visual filter indicators, saved searches, and filter removal functionality",
+            "dependencies": [
+              "23.1",
+              "23.2"
+            ],
+            "details": "Create visual filter indicators showing active filters with easy one-click removal. Implement saved searches functionality allowing recruiters to name and store complex search queries. Add filter combination suggestions based on popular or effective search patterns. Ensure all filter changes update the URL for shareable search states.",
+            "status": "pending",
+            "testStrategy": "Test filter indicator accuracy with multiple active filters. Verify saved searches persistence and loading. Test filter removal in various combinations. Validate URL state management across browser sessions and sharing scenarios."
+          },
+          {
+            "id": 5,
+            "title": "Implement Analytics and Export Functionality",
+            "description": "Add search analytics tracking and result export capabilities",
+            "dependencies": [
+              "23.1",
+              "23.3"
+            ],
+            "details": "Implement search analytics to track popular terms, filter combinations, and search patterns. Create export functionality for search results in multiple formats (CSV, PDF, Excel). Add visualization of search metrics for recruiters to understand their search behavior. Ensure all analytics respect privacy settings and data retention policies.",
+            "status": "pending",
+            "testStrategy": "Test analytics data collection accuracy. Verify export functionality across different result sizes and formats. Test visualization rendering with various metrics. Validate privacy compliance with different user permission levels."
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "title": "Implement Security and Data Protection Features",
+        "description": "Develop comprehensive security measures to protect sensitive user data and ensure compliance with privacy regulations.",
+        "details": "1. Implement end-to-end encryption for sensitive data using AES-256\n2. Set up HTTPS with TLS 1.3 and proper certificate management\n3. Create data anonymization options for candidates\n4. Implement granular permission system for data access\n5. Create comprehensive audit logging for all data access\n6. Implement GDPR compliance features (data export, deletion requests)\n7. Set up data retention policies and automated enforcement\n8. Create privacy controls for candidate profiles\n9. Implement secure data backup procedures\n10. Set up regular security scanning with OWASP tools\n11. Create security incident response procedures\n12. Implement content security policy (CSP)\n13. Add protection against common attacks (XSS, CSRF, SQL injection)\n14. Set up monitoring for suspicious activities\n15. Create security documentation and training materials",
+        "testStrategy": "1. Penetration testing of all endpoints\n2. Security code review\n3. Test encryption implementation\n4. Verify GDPR compliance features\n5. Test permission boundaries\n6. Validate audit logging accuracy\n7. Perform security scanning with automated tools",
+        "priority": "high",
+        "dependencies": [
+          17,
+          18
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement Data Encryption and HTTPS Security",
+            "description": "Set up end-to-end encryption for sensitive data and configure secure HTTPS connections with proper certificate management.",
+            "dependencies": [],
+            "details": "Implement AES-256 encryption for sensitive user data in transit and at rest. Configure HTTPS with TLS 1.3, set up proper certificate management with auto-renewal. Implement secure key management practices and add Content Security Policy (CSP) headers. Test encryption implementation with various data types and verify certificate configuration.",
+            "status": "pending",
+            "testStrategy": "Perform security audit of encryption implementation. Verify TLS configuration using tools like SSL Labs. Test encrypted data storage and retrieval. Validate CSP implementation across different browsers."
+          },
+          {
+            "id": 2,
+            "title": "Develop User Data Protection and Privacy Controls",
+            "description": "Create data anonymization options, privacy controls for candidate profiles, and implement GDPR compliance features.",
+            "dependencies": [
+              "24.1"
+            ],
+            "details": "Implement data anonymization options allowing candidates to hide sensitive information. Create privacy controls for candidate profiles with granular visibility settings. Develop GDPR compliance features including data export and deletion request handling. Set up data retention policies with automated enforcement mechanisms.",
+            "status": "pending",
+            "testStrategy": "Verify anonymization effectiveness with different profile types. Test GDPR compliance features including data export and deletion. Validate privacy controls function as expected across different user roles."
+          },
+          {
+            "id": 3,
+            "title": "Implement Access Control and Permission System",
+            "description": "Develop a granular permission system for data access with role-based controls and comprehensive audit logging.",
+            "dependencies": [
+              "24.1",
+              "24.2"
+            ],
+            "details": "Design and implement role-based access control (RBAC) system with fine-grained permissions. Create comprehensive audit logging for all data access events. Implement session management with secure timeout policies. Develop API authorization controls with proper token validation.",
+            "status": "pending",
+            "testStrategy": "Test permission boundaries with different user roles. Validate audit logging accuracy and completeness. Perform penetration testing against access control mechanisms. Verify session management security."
+          },
+          {
+            "id": 4,
+            "title": "Implement Security Against Common Attacks",
+            "description": "Add protection against common web vulnerabilities including XSS, CSRF, SQL injection, and implement security scanning.",
+            "dependencies": [
+              "24.1",
+              "24.3"
+            ],
+            "details": "Implement input validation and sanitization across all user inputs. Add protection against XSS attacks with proper output encoding. Implement CSRF protection with token validation. Add SQL injection prevention with parameterized queries. Set up regular security scanning with OWASP tools and automated vulnerability detection.",
+            "status": "pending",
+            "testStrategy": "Perform penetration testing with common attack vectors. Run automated security scans using OWASP ZAP or similar tools. Test input validation with malicious payloads. Verify CSRF protection across all forms."
+          },
+          {
+            "id": 5,
+            "title": "Develop Security Monitoring and Incident Response",
+            "description": "Set up monitoring for suspicious activities, implement secure data backup procedures, and create security incident response protocols.",
+            "dependencies": [
+              "24.3",
+              "24.4"
+            ],
+            "details": "Implement real-time monitoring for suspicious activities and login attempts. Set up secure data backup procedures with encryption and off-site storage. Create comprehensive security incident response procedures with clear escalation paths. Develop security documentation and training materials for the development team.",
+            "status": "pending",
+            "testStrategy": "Test monitoring alerts with simulated suspicious activities. Verify backup and restore procedures with realistic scenarios. Conduct tabletop exercises for incident response procedures. Validate security documentation completeness."
+          }
+        ]
+      },
+      {
+        "id": 25,
+        "title": "Develop Candidate Dashboard",
+        "description": "Create a comprehensive dashboard for candidates to manage their CV, track profile views, and control privacy settings.",
+        "details": "1. Design dashboard layout with key metrics and actions\n2. Implement CV completion progress indicator\n3. Create profile visibility controls\n4. Add profile view statistics\n5. Implement notification system for profile views and messages\n6. Create CV version history and comparison\n7. Add export functionality for CV in multiple formats\n8. Implement privacy settings management\n9. Create job preference settings\n10. Add account settings management\n11. Implement feedback collection mechanism\n12. Create mobile-responsive dashboard layout\n13. Add personalized recommendations based on profile\n14. Implement dark mode support\n15. Create onboarding tour for new users",
+        "testStrategy": "1. Usability testing with candidate personas\n2. Test dashboard with various profile completion states\n3. Verify privacy controls effectiveness\n4. Test notification system\n5. Validate export functionality\n6. Test mobile responsiveness\n7. Verify onboarding flow",
+        "priority": "medium",
+        "dependencies": [
+          19,
+          20,
+          21
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement Core Dashboard Layout and Navigation",
+            "description": "Design and develop the main dashboard layout with navigation, key metrics display, and responsive design for both desktop and mobile views.",
+            "dependencies": [],
+            "details": "Create React component structure for dashboard layout using Tailwind CSS. Implement navigation menu with links to all dashboard sections. Design responsive grid layout for key metrics display. Implement mobile-responsive design with appropriate breakpoints. Add dark mode toggle functionality.",
+            "status": "pending",
+            "testStrategy": "Conduct usability testing across different screen sizes. Verify navigation functionality. Test dark mode toggle. Ensure WCAG 2.1 AA compliance for accessibility."
+          },
+          {
+            "id": 2,
+            "title": "Develop CV Management Features",
+            "description": "Implement CV completion progress indicator, version history, comparison tools, and export functionality in multiple formats.",
+            "dependencies": [
+              "25.1"
+            ],
+            "details": "Create progress indicator component showing CV completion percentage. Implement version history tracking with timestamps. Develop comparison view to highlight differences between versions. Add export functionality supporting PDF, DOCX, and plain text formats. Implement CV completion suggestions.",
+            "status": "pending",
+            "testStrategy": "Test CV progress calculation accuracy. Verify version history storage and retrieval. Test comparison functionality with various changes. Validate export quality in all supported formats."
+          },
+          {
+            "id": 3,
+            "title": "Create Profile Analytics and Statistics",
+            "description": "Develop profile view statistics, tracking mechanisms, and visualization components to display profile engagement metrics.",
+            "dependencies": [
+              "25.1"
+            ],
+            "details": "Implement analytics dashboard showing profile views over time. Create charts using Chart.js or Recharts. Add filtering options by date range. Develop detailed view statistics showing viewer demographics when available. Implement data export for analytics.",
+            "status": "pending",
+            "testStrategy": "Test analytics accuracy with mock data. Verify chart rendering and responsiveness. Test date range filtering. Validate data export functionality."
+          },
+          {
+            "id": 4,
+            "title": "Implement Privacy and Visibility Controls",
+            "description": "Create comprehensive privacy settings management, profile visibility controls, and job preference settings.",
+            "dependencies": [
+              "25.1"
+            ],
+            "details": "Develop privacy settings panel with granular controls. Implement profile visibility toggles (public, private, recruiter-only). Create job preference settings including desired roles, locations, and salary expectations. Add data sharing consent management. Implement privacy setting change confirmation dialogs.",
+            "status": "pending",
+            "testStrategy": "Verify privacy settings are correctly applied. Test visibility controls with different user types. Validate job preference settings storage and retrieval. Test consent management functionality."
+          },
+          {
+            "id": 5,
+            "title": "Develop Notification System and Onboarding",
+            "description": "Create notification system for profile views and messages, and implement interactive onboarding tour for new users.",
+            "dependencies": [
+              "25.1",
+              "25.3",
+              "25.4"
+            ],
+            "details": "Implement real-time notification system using WebSockets. Create notification center with read/unread status. Develop customizable notification preferences. Design and implement interactive onboarding tour highlighting key dashboard features. Add persistent onboarding progress tracking.",
+            "status": "pending",
+            "testStrategy": "Test notification delivery and display. Verify notification preferences are respected. Test onboarding tour on different screen sizes. Validate tour progress persistence between sessions."
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "title": "Develop Recruiter Dashboard",
+        "description": "Create a powerful dashboard for recruiters to manage searches, track candidate interactions, and analyze recruitment metrics.",
+        "details": "1. Design recruiter dashboard with search metrics and recent activities\n2. Implement saved searches management\n3. Create candidate shortlisting functionality\n4. Add notes and tagging system for candidates\n5. Implement search history with quick access\n6. Create candidate comparison tools\n7. Add recruitment funnel visualization\n8. Implement team collaboration features\n9. Create export functionality for candidate lists\n10. Add calendar integration for scheduling\n11. Implement notification system for new matching candidates\n12. Create mobile-responsive dashboard layout\n13. Add customizable dashboard widgets\n14. Implement dark mode support\n15. Create onboarding tour for new recruiters",
+        "testStrategy": "1. Usability testing with recruiter personas\n2. Test dashboard with various search scenarios\n3. Verify collaboration features\n4. Test notification system\n5. Validate export functionality\n6. Test mobile responsiveness\n7. Verify onboarding flow",
+        "priority": "medium",
+        "dependencies": [
+          19,
+          23
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Design and Implement Dashboard UI Framework",
+            "description": "Create the core UI framework for the recruiter dashboard including layout, navigation, and responsive design patterns.",
+            "dependencies": [],
+            "details": "Implement the dashboard shell using React with Tailwind CSS, including the main navigation, sidebar, content area, and responsive breakpoints. Create reusable layout components for dashboard widgets. Implement dark mode support and ensure WCAG 2.1 AA accessibility compliance.",
+            "status": "pending",
+            "testStrategy": "Conduct usability testing with recruiter personas, verify responsive behavior across device sizes, test keyboard navigation, and validate accessibility with axe-core."
+          },
+          {
+            "id": 2,
+            "title": "Develop Search and Candidate Management Features",
+            "description": "Implement core recruiter functionality for searching, saving searches, and managing candidate interactions.",
+            "dependencies": [
+              "26.1"
+            ],
+            "details": "Integrate with the advanced search API to display search results. Implement saved searches management with CRUD operations. Create candidate shortlisting functionality with drag-and-drop interface. Add notes and tagging system for candidates with real-time updates.",
+            "status": "pending",
+            "testStrategy": "Test dashboard with various search scenarios, verify saved searches persistence, test candidate shortlisting with different user roles, validate tagging and notes functionality."
+          },
+          {
+            "id": 3,
+            "title": "Implement Analytics and Visualization Components",
+            "description": "Create data visualization components for recruitment metrics and funnel analysis.",
+            "dependencies": [
+              "26.1"
+            ],
+            "details": "Implement recruitment funnel visualization using D3.js or Chart.js. Create metrics dashboard showing key performance indicators. Add candidate comparison tools with side-by-side view. Develop customizable dashboard widgets with drag-and-drop positioning.",
+            "status": "pending",
+            "testStrategy": "Test visualization components with various data sets, verify correct calculations of metrics, test widget customization and persistence of layout changes."
+          },
+          {
+            "id": 4,
+            "title": "Develop Collaboration and Integration Features",
+            "description": "Implement team collaboration features and third-party integrations for the recruiter dashboard.",
+            "dependencies": [
+              "26.1",
+              "26.2"
+            ],
+            "details": "Create team collaboration features including shared candidate lists and comments. Implement calendar integration for scheduling interviews using Google Calendar and Outlook APIs. Add export functionality for candidate lists to CSV, PDF, and Excel formats. Create notification system for new matching candidates and team activities.",
+            "status": "pending",
+            "testStrategy": "Verify collaboration features with multiple user accounts, test calendar integration with different providers, validate export functionality with various data sizes, test notification delivery and read status tracking."
+          },
+          {
+            "id": 5,
+            "title": "Implement Onboarding and User Experience Enhancements",
+            "description": "Create onboarding flows and UX improvements to enhance recruiter productivity.",
+            "dependencies": [
+              "26.1",
+              "26.2",
+              "26.3",
+              "26.4"
+            ],
+            "details": "Develop interactive onboarding tour for new recruiters using react-joyride. Implement search history with quick access to recent searches. Create customizable dashboard widgets with personalization options. Add keyboard shortcuts for common actions. Implement performance optimizations for dashboard loading and interactions.",
+            "status": "pending",
+            "testStrategy": "Test onboarding flow with new and existing users, verify search history functionality, test keyboard shortcuts across browsers, measure and validate performance improvements."
+          }
+        ]
+      },
+      {
+        "id": 27,
+        "title": "Implement Internationalization and Localization",
+        "description": "Add support for multiple languages and regional formats to make the platform accessible to international users.",
+        "details": "1. Set up i18next (v22.0+) for translation management\n2. Create translation files for key languages (English, Spanish, French, German, Chinese)\n3. Implement language detection and selection\n4. Add support for right-to-left (RTL) languages\n5. Implement date and number formatting based on locale\n6. Create translation workflow for content updates\n7. Add language preference in user settings\n8. Implement fallback mechanisms for missing translations\n9. Create language-specific validation rules\n10. Add support for multilingual search\n11. Implement language-specific sorting\n12. Create documentation for translators\n13. Add automated translation quality checks\n14. Implement region-specific content customization\n15. Create language switcher component",
+        "testStrategy": "1. Test UI in different languages\n2. Verify RTL layout functionality\n3. Test date and number formatting\n4. Validate multilingual search\n5. Test language switching\n6. Verify translation completeness\n7. Test with international users",
+        "priority": "medium",
+        "dependencies": [
+          19,
+          20,
+          23
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up i18next and Create Translation Files",
+            "description": "Configure i18next framework and create translation files for English, Spanish, French, German, and Chinese languages",
+            "dependencies": [],
+            "details": "Install i18next v22.0+ and related packages (i18next-http-backend, i18next-browser-languagedetector, react-i18next). Configure the i18next instance with proper namespaces, fallback language (English), and loading mechanisms. Create structured JSON translation files for all required languages with consistent key hierarchies. Implement a translation management workflow for future updates.",
+            "status": "pending",
+            "testStrategy": "Verify correct loading of translation files. Test fallback mechanisms when translations are missing. Validate UTF-8 encoding for all language files, especially for Chinese characters."
+          },
+          {
+            "id": 2,
+            "title": "Implement Language Detection and Selection UI",
+            "description": "Create language detection logic and user interface components for language switching",
+            "dependencies": [
+              "27.1"
+            ],
+            "details": "Implement browser language detection using i18next-browser-languagedetector. Create a language switcher component with flags/labels for supported languages. Add language preference storage in user settings and local storage. Ensure language selection persists across sessions. Implement language change event handling to update UI without page reload.",
+            "status": "pending",
+            "testStrategy": "Test automatic language detection with various browser language settings. Verify language switching functionality across all pages. Test persistence of language preference across sessions and devices."
+          },
+          {
+            "id": 3,
+            "title": "Add RTL Support and Layout Adaptations",
+            "description": "Implement support for right-to-left languages and ensure proper layout rendering",
+            "dependencies": [
+              "27.1",
+              "27.2"
+            ],
+            "details": "Configure CSS/SCSS for RTL support using CSS logical properties or a library like rtl-sass. Create RTL-specific styling overrides where needed. Implement dynamic direction switching based on language selection. Test and fix layout issues in RTL mode, particularly for components with directional elements like carousels, input fields with icons, and navigation menus.",
+            "status": "pending",
+            "testStrategy": "Test full application in RTL mode to identify layout issues. Verify text alignment, input fields, and navigation elements render correctly. Test switching between LTR and RTL languages to ensure smooth transitions."
+          },
+          {
+            "id": 4,
+            "title": "Implement Locale-Based Formatting",
+            "description": "Add support for locale-specific date, time, number, and currency formatting",
+            "dependencies": [
+              "27.2"
+            ],
+            "details": "Integrate Intl API or a library like date-fns with locale support for consistent formatting. Create utility functions for formatting dates, times, numbers, and currencies based on the selected locale. Implement format detection from browser locale. Create a centralized formatting service to ensure consistency across the application. Update all existing hardcoded format strings to use the new locale-aware formatting.",
+            "status": "pending",
+            "testStrategy": "Test date and number formatting with various locales. Verify currency symbols and number separators display correctly. Test edge cases like negative numbers, very large numbers, and date ranges."
+          },
+          {
+            "id": 5,
+            "title": "Implement Multilingual Validation and Search",
+            "description": "Create language-specific validation rules and enable multilingual search capabilities",
+            "dependencies": [
+              "27.1",
+              "27.4"
+            ],
+            "details": "Implement locale-specific validation rules for form inputs (e.g., postal codes, phone numbers). Create language-specific regular expressions for validation. Integrate with Elasticsearch to support multilingual search with language-specific analyzers and tokenizers. Implement language-specific sorting rules. Create fallback mechanisms for validation and search when specific language support is limited.",
+            "status": "pending",
+            "testStrategy": "Test validation rules with locale-specific input formats. Verify search functionality works correctly across all supported languages. Test with mixed-language content to ensure proper results. Validate sorting order is appropriate for each language."
+          }
+        ]
+      },
+      {
+        "id": 28,
+        "title": "Implement Analytics and Reporting System",
+        "description": "Create a comprehensive analytics system to track platform usage, search patterns, and user engagement.",
+        "details": "1. Integrate Google Analytics 4 or similar analytics platform\n2. Implement custom event tracking for key user actions\n3. Create dashboard for platform metrics\n4. Implement funnel analysis for user onboarding\n5. Add search analytics for popular terms and filters\n6. Create user engagement reports\n7. Implement A/B testing framework\n8. Add performance monitoring for key pages\n9. Create custom reports for business metrics\n10. Implement data visualization with Chart.js or D3.js\n11. Add export functionality for reports\n12. Create scheduled report generation\n13. Implement user segmentation for targeted analysis\n14. Add privacy-compliant analytics with consent management\n15. Create documentation for analytics interpretation",
+        "testStrategy": "1. Verify event tracking accuracy\n2. Test report generation with various data sets\n3. Validate export functionality\n4. Test A/B testing framework\n5. Verify privacy compliance\n6. Test performance impact of analytics code\n7. Validate data visualization across browsers",
+        "priority": "medium",
+        "dependencies": [
+          20,
+          23,
+          25,
+          26
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up Analytics Infrastructure",
+            "description": "Integrate Google Analytics 4 and implement the foundational analytics infrastructure with privacy compliance features.",
+            "dependencies": [],
+            "details": "1. Install and configure Google Analytics 4 tracking code\n2. Set up consent management system for GDPR compliance\n3. Configure user identification and cross-device tracking\n4. Implement data retention policies\n5. Create development, staging, and production analytics environments\n6. Set up IP anonymization and privacy-focused configurations",
+            "status": "pending",
+            "testStrategy": "1. Verify tracking code implementation across all pages\n2. Test consent banner functionality and opt-out mechanisms\n3. Validate that no PII is collected without explicit consent\n4. Confirm data appears correctly in GA4 dashboard\n5. Test across multiple browsers and devices"
+          },
+          {
+            "id": 2,
+            "title": "Implement Custom Event Tracking",
+            "description": "Create a comprehensive event tracking system for user actions and engagement metrics throughout the platform.",
+            "dependencies": [
+              "28.1"
+            ],
+            "details": "1. Define event taxonomy and naming conventions\n2. Implement tracking for key user actions (searches, profile views, applications)\n3. Set up custom dimensions for user segments and behaviors\n4. Create conversion tracking for critical user journeys\n5. Implement funnel analysis for user onboarding process\n6. Add search analytics tracking for popular terms and filters",
+            "status": "pending",
+            "testStrategy": "1. Verify all events are firing correctly with proper parameters\n2. Test event tracking across different user flows\n3. Validate data accuracy in analytics dashboard\n4. Confirm funnel steps are properly tracked\n5. Test search term tracking and filtering analytics"
+          },
+          {
+            "id": 3,
+            "title": "Develop Analytics Dashboard",
+            "description": "Create a centralized dashboard for visualizing platform metrics and user engagement data.",
+            "dependencies": [
+              "28.1",
+              "28.2"
+            ],
+            "details": "1. Design dashboard layout with key performance indicators\n2. Implement data visualization using Chart.js or D3.js\n3. Create real-time data updates for critical metrics\n4. Develop user engagement reports with segmentation capabilities\n5. Implement custom reports for business metrics\n6. Add filtering and date range selection functionality",
+            "status": "pending",
+            "testStrategy": "1. Test dashboard performance with large datasets\n2. Verify visualization accuracy across browsers\n3. Validate real-time data updates\n4. Test responsiveness on different screen sizes\n5. Confirm all charts and graphs display correctly"
+          },
+          {
+            "id": 4,
+            "title": "Implement A/B Testing Framework",
+            "description": "Create a system for running controlled experiments to optimize user experience and conversion rates.",
+            "dependencies": [
+              "28.1",
+              "28.2"
+            ],
+            "details": "1. Set up A/B testing infrastructure using Google Optimize or similar tool\n2. Create experiment framework for testing UI variations\n3. Implement statistical analysis for experiment results\n4. Develop process for experiment creation and monitoring\n5. Create documentation for experiment design best practices\n6. Implement segmentation for targeted experiments",
+            "status": "pending",
+            "testStrategy": "1. Verify experiment variants display correctly\n2. Test experiment allocation and user consistency\n3. Validate data collection for experiment metrics\n4. Test statistical significance calculations\n5. Confirm experiment results reporting accuracy"
+          },
+          {
+            "id": 5,
+            "title": "Create Export and Reporting System",
+            "description": "Develop functionality for exporting analytics data and generating scheduled reports.",
+            "dependencies": [
+              "28.3"
+            ],
+            "details": "1. Implement export functionality for dashboard data (CSV, Excel, PDF)\n2. Create scheduled report generation system\n3. Develop email delivery for automated reports\n4. Implement custom report builder with filtering options\n5. Create API endpoints for programmatic access to analytics data\n6. Develop comprehensive documentation for analytics interpretation",
+            "status": "pending",
+            "testStrategy": "1. Test export functionality with various data volumes\n2. Verify scheduled reports generate correctly\n3. Test email delivery of reports\n4. Validate custom report builder functionality\n5. Test API endpoints for data accuracy and performance"
+          }
+        ]
+      },
+      {
+        "id": 29,
+        "title": "Implement Progressive Web App (PWA) Features",
+        "description": "Add PWA capabilities to enhance mobile experience and provide offline functionality.",
+        "details": "1. Create manifest.json with app metadata\n2. Implement service worker for caching and offline support\n3. Add offline fallback pages\n4. Implement push notifications for important events\n5. Create app installation prompts\n6. Add splash screens for various devices\n7. Implement background sync for offline actions\n8. Create offline data storage strategy\n9. Add app update notification mechanism\n10. Implement performance optimizations for mobile\n11. Create responsive images with srcset\n12. Add touch gestures for mobile navigation\n13. Implement app shortcuts for common actions\n14. Create offline CV editing capability\n15. Add battery-aware features for mobile users",
+        "testStrategy": "1. Test offline functionality\n2. Verify push notifications\n3. Test installation process on various devices\n4. Validate offline data synchronization\n5. Test performance on low-end devices\n6. Verify update mechanism\n7. Test with various network conditions",
+        "priority": "low",
+        "dependencies": [
+          19,
+          20,
+          23,
+          25,
+          26
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up PWA foundation",
+            "description": "Create the basic PWA structure including manifest.json and service worker registration",
+            "dependencies": [],
+            "details": "Create manifest.json with app metadata including name, icons, theme colors, and display mode. Register a basic service worker that handles installation and activation events. Set up the initial caching strategy for core application assets.",
+            "status": "pending",
+            "testStrategy": "Verify manifest.json validity using Lighthouse. Test service worker registration across browsers. Confirm proper caching of core assets."
+          },
+          {
+            "id": 2,
+            "title": "Implement offline functionality",
+            "description": "Develop comprehensive offline support with fallback pages and data storage",
+            "dependencies": [
+              "29.1"
+            ],
+            "details": "Implement service worker caching strategies for different resource types. Create offline fallback pages with appropriate messaging. Develop offline data storage using IndexedDB for CV data. Implement background sync for actions performed while offline.",
+            "status": "pending",
+            "testStrategy": "Test application functionality with network disconnected. Verify offline data persistence. Test synchronization when connection is restored."
+          },
+          {
+            "id": 3,
+            "title": "Add installation and update features",
+            "description": "Implement app installation prompts, splash screens, and update notification mechanism",
+            "dependencies": [
+              "29.1"
+            ],
+            "details": "Create custom app installation prompts with appropriate timing. Design and implement splash screens for various device sizes. Develop an update notification system to inform users when a new version is available. Implement the update process with proper caching invalidation.",
+            "status": "pending",
+            "testStrategy": "Test installation flow on multiple devices. Verify splash screen appearance on different screen sizes. Test update notification and application update process."
+          },
+          {
+            "id": 4,
+            "title": "Implement push notifications",
+            "description": "Set up push notification infrastructure for important application events",
+            "dependencies": [
+              "29.1",
+              "29.2"
+            ],
+            "details": "Register push notification service with appropriate permissions handling. Implement server-side notification sending infrastructure. Create notification categories for different event types. Develop notification click handling and deep linking.",
+            "status": "pending",
+            "testStrategy": "Test notification permission flow. Verify notification delivery and appearance. Test notification interaction and deep linking functionality."
+          },
+          {
+            "id": 5,
+            "title": "Optimize mobile experience",
+            "description": "Enhance mobile usability with performance optimizations and touch interactions",
+            "dependencies": [
+              "29.1",
+              "29.2",
+              "29.3"
+            ],
+            "details": "Implement responsive images with srcset for optimal loading. Add touch gestures for mobile navigation. Create app shortcuts for common actions. Implement battery-aware features that adjust functionality based on device power status. Optimize performance specifically for mobile devices.",
+            "status": "pending",
+            "testStrategy": "Test performance on various mobile devices. Verify touch gesture functionality. Measure and validate performance improvements. Test battery-aware features with different power states."
+          }
+        ]
+      },
+      {
+        "id": 30,
+        "title": "Develop System Documentation and Help Center",
+        "description": "Create comprehensive documentation for users, administrators, and developers, including a help center with tutorials and FAQs.",
+        "details": "1. Create user documentation for candidates and recruiters\n2. Implement in-app help system with contextual guidance\n3. Create video tutorials for key features\n4. Develop FAQ section with search functionality\n5. Implement feedback collection for documentation\n6. Create administrator documentation\n7. Develop API documentation with OpenAPI/Swagger\n8. Create developer onboarding documentation\n9. Implement knowledge base for common issues\n10. Add guided tours for new features\n11. Create printable quick reference guides\n12. Implement documentation versioning\n13. Add search functionality for documentation\n14. Create troubleshooting guides\n15. Implement documentation analytics to identify gaps",
+        "testStrategy": "1. User testing of documentation\n2. Verify search functionality\n3. Test guided tours\n4. Validate API documentation accuracy\n5. Test documentation on mobile devices\n6. Verify feedback collection\n7. Test documentation versioning",
+        "priority": "medium",
+        "dependencies": [
+          20,
+          23,
+          25,
+          26
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create User and Administrator Documentation",
+            "description": "Develop comprehensive documentation for end users (candidates and recruiters) and system administrators with clear instructions and workflows.",
+            "dependencies": [],
+            "details": "Create user guides for candidates covering profile creation, CV management, and dashboard features. Develop recruiter documentation for search functionality, candidate management, and analytics. Create administrator documentation covering system configuration, user management, and maintenance procedures. Ensure all documentation follows consistent formatting and includes screenshots.",
+            "status": "pending",
+            "testStrategy": "Conduct user testing with representatives from each user group. Verify accuracy of all documented procedures. Test documentation on different devices and screen sizes. Review for clarity, completeness, and technical accuracy."
+          },
+          {
+            "id": 2,
+            "title": "Implement In-App Help System and Guided Tours",
+            "description": "Develop an integrated help system with contextual guidance and interactive tours for key features and workflows.",
+            "dependencies": [
+              "30.1"
+            ],
+            "details": "Design and implement a context-sensitive help system that provides relevant assistance based on user location and actions. Create interactive guided tours for onboarding new users and introducing new features. Implement tooltips and help icons throughout the interface. Ensure help content is accessible from all key screens and workflows.",
+            "status": "pending",
+            "testStrategy": "Test help system accessibility from all application areas. Verify contextual relevance of help content. Conduct usability testing of guided tours with new users. Test help system on mobile devices and with keyboard navigation."
+          },
+          {
+            "id": 3,
+            "title": "Develop Knowledge Base with FAQ and Troubleshooting Guides",
+            "description": "Create a searchable knowledge base with frequently asked questions, troubleshooting guides, and common issue resolutions.",
+            "dependencies": [
+              "30.1"
+            ],
+            "details": "Design and implement a knowledge base structure with categories for different user types and functionality areas. Develop comprehensive FAQ sections with search functionality. Create troubleshooting guides for common issues and error scenarios. Implement a tagging system for improved content discovery. Include a feedback mechanism to identify gaps in documentation.",
+            "status": "pending",
+            "testStrategy": "Test search functionality with various queries and keywords. Verify accuracy of troubleshooting guides. Conduct user testing to ensure issues can be quickly resolved using the knowledge base. Test feedback collection mechanism."
+          },
+          {
+            "id": 4,
+            "title": "Create Multimedia Training Materials",
+            "description": "Develop video tutorials, quick reference guides, and interactive learning materials for key system features.",
+            "dependencies": [
+              "30.1",
+              "30.2"
+            ],
+            "details": "Create script and storyboards for video tutorials covering essential workflows. Produce high-quality screen recordings with professional narration. Develop printable quick reference guides for common tasks. Create interactive learning materials for complex features. Ensure all multimedia content is accessible with proper captioning and transcripts.",
+            "status": "pending",
+            "testStrategy": "Review all videos for clarity and accuracy. Test video playback across different devices and browsers. Verify printable guides format correctly. Test accessibility features including captions and transcripts."
+          },
+          {
+            "id": 5,
+            "title": "Implement Developer Documentation and API References",
+            "description": "Create comprehensive technical documentation for developers including API references, integration guides, and code examples.",
+            "dependencies": [
+              "30.1"
+            ],
+            "details": "Develop API documentation using OpenAPI/Swagger specifications. Create developer onboarding documentation with system architecture overview. Implement code examples for common integration scenarios. Create documentation for extension points and customization options. Implement documentation versioning to track changes across system updates.",
+            "status": "pending",
+            "testStrategy": "Validate API documentation accuracy against actual implementations. Test code examples to ensure they work as documented. Review documentation with development team members. Test documentation versioning system with simulated updates."
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "created": "2025-10-02T13:45:21.004Z",
+      "updated": "2025-10-02T14:23:22.145Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

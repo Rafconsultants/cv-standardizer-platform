@@ -1,0 +1,133 @@
+{
+	"meta": {
+		"generatedAt": "2025-10-02T13:52:50.934Z",
+		"tasksAnalyzed": 15,
+		"totalTasks": 15,
+		"analysisCount": 15,
+		"thresholdScore": 5,
+		"projectName": "Taskmaster",
+		"usedResearch": true
+	},
+	"complexityAnalysis": [
+		{
+			"taskId": 16,
+			"taskTitle": "Setup Project Architecture and Infrastructure",
+			"complexityScore": 8,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Break down the project architecture setup into logical groups focusing on frontend setup, backend setup, database configuration, DevOps pipeline, and development environment configuration. For each subtask, include specific technologies, configuration details, and validation steps.",
+			"reasoning": "This task involves setting up the entire technical foundation for the project with multiple technologies (React, Express, PostgreSQL, Redis, Docker) and requires configuration across frontend, backend, database, and DevOps. The complexity comes from ensuring all components work together seamlessly while following best practices for security, scalability, and maintainability."
+		},
+		{
+			"taskId": 17,
+			"taskTitle": "Design and Implement Authentication System",
+			"complexityScore": 9,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Divide the authentication system implementation into core authentication flows, token management, security features, and social authentication integration. For each subtask, include specific security considerations, implementation details, and testing requirements.",
+			"reasoning": "Authentication is highly complex due to security implications, requiring careful implementation of JWT tokens, refresh mechanisms, password hashing, and protection against various attack vectors. The system also needs to handle different user roles and integrate with third-party OAuth providers, making it one of the most security-critical components of the application."
+		},
+		{
+			"taskId": 18,
+			"taskTitle": "Design and Implement Database Schema",
+			"complexityScore": 7,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Break down the database schema implementation into user/authentication tables, CV data structure, search optimization, and database maintenance/security. For each subtask, include entity relationships, indexing strategies, and data validation requirements.",
+			"reasoning": "Creating a comprehensive database schema requires deep understanding of data relationships, normalization principles, and query optimization. The complexity comes from designing a schema that efficiently supports CV data with various sections while enabling fast search and maintaining data integrity across multiple related tables."
+		},
+		{
+			"taskId": 19,
+			"taskTitle": "Develop Standardized CV Component Library",
+			"complexityScore": 8,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Divide the CV component library development into core CV section components, form validation system, accessibility implementation, internationalization support, and export functionality. For each subtask, include design requirements, reusability considerations, and testing criteria.",
+			"reasoning": "Building a component library requires creating a cohesive system of reusable UI elements that must be responsive, accessible, and support complex features like form validation, dark mode, and internationalization. The complexity is increased by the need for PDF export functionality and ensuring all components work across different browsers and devices."
+		},
+		{
+			"taskId": 20,
+			"taskTitle": "Implement Candidate Onboarding Wizard",
+			"complexityScore": 7,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Break down the candidate onboarding wizard into form state management, validation system, progress tracking/saving, and user experience enhancements. For each subtask, include specific implementation details, state management approach, and usability considerations.",
+			"reasoning": "Creating a multi-step wizard involves complex state management across steps, validation gates, and progress tracking. The auto-save functionality and draft saving add complexity, as does ensuring a smooth mobile experience. The wizard must handle potentially large forms while maintaining performance and providing clear guidance to users."
+		},
+		{
+			"taskId": 21,
+			"taskTitle": "Develop AI-Powered CV Parsing System",
+			"complexityScore": 10,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Divide the AI-powered CV parsing system into document upload/processing, AI integration and prompt engineering, data extraction and mapping, confidence scoring and review interface, and system optimization. For each subtask, include technical implementation details, AI model considerations, and performance requirements.",
+			"reasoning": "This is the most complex task as it involves integrating with AI models, processing various document formats, extracting structured data from unstructured content, and implementing confidence scoring. The system must handle edge cases gracefully, provide fallbacks for unparsable documents, and continuously improve through feedback loops."
+		},
+		{
+			"taskId": 22,
+			"taskTitle": "Implement Elasticsearch Integration for CV Search",
+			"complexityScore": 9,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Break down the Elasticsearch integration into cluster setup and configuration, index design and mapping, data synchronization pipeline, and search optimization features. For each subtask, include specific Elasticsearch configuration details, analyzer design, and performance benchmarking requirements.",
+			"reasoning": "Elasticsearch integration requires specialized knowledge of search engine concepts, proper index design, and relevance tuning. The complexity comes from setting up custom analyzers for different languages, implementing synonym dictionaries, configuring geo-location search, and ensuring efficient data synchronization from PostgreSQL."
+		},
+		{
+			"taskId": 23,
+			"taskTitle": "Develop Advanced Search and Filter Interface",
+			"complexityScore": 8,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Divide the search interface implementation into UI design and filter components, real-time search functionality, search management features (history/saved searches), and results visualization/export. For each subtask, include UX considerations, performance optimization techniques, and testing scenarios.",
+			"reasoning": "Creating an advanced search interface involves complex UI interactions, real-time search with debouncing, implementing boolean operators, and managing large result sets. The interface must be intuitive yet powerful, with features like autocomplete, saved searches, and various visualization options, while maintaining performance with large datasets."
+		},
+		{
+			"taskId": 24,
+			"taskTitle": "Implement Security and Data Protection Features",
+			"complexityScore": 9,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Break down the security implementation into data encryption and secure transport, access control and auditing, compliance features (GDPR), and security monitoring/incident response. For each subtask, include specific security protocols, implementation details, and testing/validation requirements.",
+			"reasoning": "Security implementation is highly complex due to the need to protect sensitive user data through encryption, implement comprehensive audit logging, ensure GDPR compliance, and protect against various attack vectors. The system must handle data anonymization, retention policies, and security incident response while maintaining usability."
+		},
+		{
+			"taskId": 25,
+			"taskTitle": "Develop Candidate Dashboard",
+			"complexityScore": 6,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Divide the candidate dashboard development into core dashboard layout and metrics, CV management features, and profile/privacy settings. For each subtask, include UI/UX requirements, data visualization needs, and mobile responsiveness considerations.",
+			"reasoning": "The candidate dashboard requires creating an intuitive interface with various metrics, CV management tools, and privacy controls. While complex, it builds on existing components and focuses primarily on presenting information and controls in an accessible way. The complexity comes from ensuring good UX across devices and implementing features like version history."
+		},
+		{
+			"taskId": 26,
+			"taskTitle": "Develop Recruiter Dashboard",
+			"complexityScore": 7,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down the recruiter dashboard into search management and metrics, candidate tracking and collaboration features, and data visualization/reporting. For each subtask, include UI/UX requirements, collaboration workflow details, and performance considerations for handling large candidate lists.",
+			"reasoning": "The recruiter dashboard is more complex than the candidate dashboard as it involves search management, candidate tracking, team collaboration, and recruitment analytics. It must handle potentially large datasets while providing tools for shortlisting, comparison, and collaboration, requiring careful UX design and performance optimization."
+		},
+		{
+			"taskId": 27,
+			"taskTitle": "Implement Internationalization and Localization",
+			"complexityScore": 7,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Divide the internationalization implementation into translation system setup, UI adaptations for different languages/regions, and content/validation localization. For each subtask, include technical implementation details, language-specific considerations, and testing requirements across supported languages.",
+			"reasoning": "Internationalization requires implementing a robust translation system, supporting RTL languages, handling locale-specific formatting, and ensuring proper content adaptation. The complexity comes from maintaining a consistent user experience across languages while handling language-specific validation, sorting, and search requirements."
+		},
+		{
+			"taskId": 28,
+			"taskTitle": "Implement Analytics and Reporting System",
+			"complexityScore": 7,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down the analytics system implementation into event tracking and data collection, dashboard and visualization components, and custom reporting/export functionality. For each subtask, include technical implementation details, data visualization requirements, and privacy considerations.",
+			"reasoning": "Implementing analytics requires setting up comprehensive event tracking, creating meaningful visualizations, and building custom reports while ensuring privacy compliance. The complexity comes from capturing the right data points, implementing A/B testing capabilities, and creating insightful visualizations that provide business value."
+		},
+		{
+			"taskId": 29,
+			"taskTitle": "Implement Progressive Web App (PWA) Features",
+			"complexityScore": 6,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Divide the PWA implementation into offline functionality and caching, push notifications and background sync, and mobile optimization features. For each subtask, include technical implementation details, testing across devices/network conditions, and performance considerations.",
+			"reasoning": "PWA implementation involves service worker configuration, offline data strategies, and push notifications, which add complexity but are somewhat isolated from core application logic. The main challenges are ensuring reliable offline functionality, implementing efficient caching strategies, and optimizing performance for mobile devices."
+		},
+		{
+			"taskId": 30,
+			"taskTitle": "Develop System Documentation and Help Center",
+			"complexityScore": 5,
+			"recommendedSubtasks": 3,
+			"expansionPrompt": "Break down the documentation development into user guides and tutorials, technical/API documentation, and interactive help system. For each subtask, include content organization strategy, multimedia requirements, and maintenance/versioning approach.",
+			"reasoning": "Creating comprehensive documentation is time-consuming but less technically complex than other tasks. The main challenges are organizing information effectively, creating clear tutorials, and implementing a searchable help system. The task requires good writing skills and understanding of the entire system but involves less technical risk."
+		}
+	]
+}
